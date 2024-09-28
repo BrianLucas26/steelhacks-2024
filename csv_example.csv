@@ -1,8 +1,8 @@
-﻿Date,Timestamp,URL,Resolved?,Camera Number
-12:12:12 PM,3:40:23,pornhub.com,TRUE,69
-12:12:12 PM,3:40:24,google.com,FALSE,69
-1:12:12 PM,0:12:54,yahoo.com,TRUE,420
-2:12:12 PM,69:42:00,reddit.com,FALSE,420
+﻿date,timestamp,videoURL,resolved,cameraID
+2022-12-30,3:40:23,pornhub.com,TRUE,69
+2022-12-27,3:40:24,google.com,FALSE,69
+2022-12-31,0:12:54,yahoo.com,TRUE,420
+2022-12-28,69:42:00,reddit.com,FALSE,420
 ,,,,
 ,,,,
 ,,,,
