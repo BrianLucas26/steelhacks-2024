@@ -37,9 +37,17 @@ const PieChart = ({ incidents }) => {
   };
 
   return (
-    <div className="chart-container">
-      <h2>Incident Count by Day of the Week</h2>
-      <Pie data={data} />
+    <div className="chart-container" style={{ width: '500px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <h2 style={{ textAlign: 'center' }}>Incident Count by Day of the Week</h2>
+      <div style={{ width: '100%', height: '100%' }}>
+        <Pie 
+          data={data} 
+          options={{
+            responsive: true,
+            maintainAspectRatio: false, // Disable aspect ratio
+          }} 
+        />
+      </div>
     </div>
   );
 };

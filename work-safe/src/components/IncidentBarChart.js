@@ -49,9 +49,9 @@ const IncidentBarChart = ({ incidents }) => {
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" style={{ width: '500px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <h2>Incidents by Camera ID</h2>
-      <Bar data={data} options={options} />
+      <Bar data={data} options={options} width={100} height={50} />
     </div>
   );
 };
