@@ -1,6 +1,7 @@
 {
   "name": "work-safe",
   "version": "0.1.0",
+  "homepage": "https://brianlucas26.github.io/steelhacks-2024",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
