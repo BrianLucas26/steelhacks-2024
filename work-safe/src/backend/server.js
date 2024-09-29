@@ -25,6 +25,10 @@ mongoose.connection.on('open', function (ref) {
 */
 // Define the Incident schema
 const incidentSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
