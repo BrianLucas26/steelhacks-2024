@@ -14,6 +14,7 @@ mongoose.connect('mongodb+srv://jordanshopp123:obYSCgSMGDQ9zMa8@cluster0.kwlhw.m
 .catch((err) => console.log(err));
 
 //print list of collections in MongoDB
+/*
 mongoose.connection.on('open', function (ref) {
   console.log('Connected to mongo server.');
   mongoose.connection.db.listCollections().toArray(function (err, names) {
@@ -21,7 +22,7 @@ mongoose.connection.on('open', function (ref) {
   });
   console.log("HELLO69420")
 });
-
+*/
 // Define the Incident schema
 const incidentSchema = new mongoose.Schema({
   date: {
@@ -49,14 +50,11 @@ const incidentSchema = new mongoose.Schema({
 const Incident = mongoose.model('steel', incidentSchema);
 
 //list number of items in steel collection
-Incident.countDocuments({})
-  .then(count => {
-    console.log('Number of Incidents:', count);
-  })
-  .catch(err => {
-    console.error('Error counting documents:', err);
-  });
-
+/*
+Incident.countDocuments({}, function (err, count) {
+  console.log('Number of Incidents:', count);
+});
+*/
 module.exports = Incident;
 
 // Use CORS
@@ -66,13 +64,12 @@ app.use(cors());
 app.get('/api/all-incidents', async (req, res) => {
   try {
     //print path of MongoDB
-    console.log(Incident)
+    //console.log(Incident)
 
     // Fetch all incidents from the database
     const incidents = await Incident.find({}).sort({ timestamp: -1 }); // Optional: Sort by most recent incidents
     res.json({ incidents });
-    console.log(incidents)
-    console.log("HELLO")
+    //console.log(incidents)
   } catch (error) {
     console.error('Error fetching all incidents:', error);
     res.status(500).json({ error: 'Failed to fetch incidents' });
