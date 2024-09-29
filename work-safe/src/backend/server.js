@@ -94,6 +94,71 @@ app.get('/api/incident-count', async (req, res) => {
   }
 });
 
+// Hardcoded JSON data
+const incidentsData = [
+  {
+      "date": "9/27/2024",
+      "timestamp": "3:40:23",
+      "videoURL": "https://www.youtube.com/watch?v=ras7eP2jQUU",
+      "resolved": true,
+      "cameraID": 69
+  },
+  {
+      "date": "9/28/2024",
+      "timestamp": "3:40:24",
+      "videoURL": "google.com",
+      "resolved": false,
+      "cameraID": 69
+  },
+  {
+      "date": "9/26/2024",
+      "timestamp": "0:12:54",
+      "videoURL": "yahoo.com",
+      "resolved": true,
+      "cameraID": 420
+  },
+  {
+      "date": "9/25/2024",
+      "timestamp": "69:42:00",
+      "videoURL": "reddit.com",
+      "resolved": false,
+      "cameraID": 420
+  },
+  {
+    "date": "9/26/2022",
+    "timestamp": "0:12:54",
+    "videoURL": "yahoo.com",
+    "resolved": true,
+    "cameraID": 420
+  },
+  {
+    "date": "9/28/2023",
+    "timestamp": "0:12:54",
+    "videoURL": "yahoo.com",
+    "resolved": true,
+    "cameraID": 420
+  },
+  {
+    "date": "9/26/2023",
+    "timestamp": "0:12:54",
+    "videoURL": "yahoo.com",
+    "resolved": true,
+    "cameraID": 420
+  },
+  {
+    "date": "3/26/2023",
+    "timestamp": "0:12:54",
+    "videoURL": "yahoo.com",
+    "resolved": true,
+    "cameraID": 420
+  }
+];
+
+// API to get the incidents that occurred this week
+app.get('/api/incidents-test', async (req, res) => {
+  res.json(incidentsData);
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
