@@ -73,7 +73,8 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #4caf50;
+  /* background-color: #4caf50; */
+  background-color: #007bff;
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -217,12 +218,14 @@ body {
 
 .incident-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; 
+  gap: 20px; 
 }
 
 .report-btn,
 .resolve-btn {
-  background-color: #4caf50;
+  /* background-color: #4caf50; */
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -232,11 +235,13 @@ body {
 }
 
 .report-btn:hover {
-  background-color: #45a049;
+  /* background-color: #45a049; */
+  background-color: #0056b3;
 }
 
 .resolve-btn:hover {
-  background-color: #388e3c;
+  /* background-color: #388e3c; */
+  background-color: #0056b3;
 }
 
 @keyframes fadeIn {
