@@ -25,10 +25,6 @@ mongoose.connection.on('open', function (ref) {
 */
 // Define the Incident schema
 const incidentSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true
-  },
   date: {
     type: Date,
     default: Date.now
@@ -45,6 +41,10 @@ const incidentSchema = new mongoose.Schema({
     default: false
   },
   cameraID: {
+    type: Number,
+    required: true
+  },
+  id: {
     type: Number,
     required: true
   }
@@ -72,7 +72,7 @@ app.get('/api/all-incidents', async (req, res) => {
 
     // Fetch all incidents from the database
     const incidents = await Incident.find({}).sort({ timestamp: -1 }); // Optional: Sort by most recent incidents
-    res.json({ incidents });
+    res.json( incidents );
     //console.log(incidents)
   } catch (error) {
     console.error('Error fetching all incidents:', error);
