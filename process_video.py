@@ -4,10 +4,11 @@ import subprocess
 import os
 import onnxruntime
 import numpy as np
+import time
 
 class model:
     def __init__(self):
-        self.session = onnxruntime.InferenceSession('best_one.onnx')
+        self.session = onnxruntime.InferenceSession('model.onnx')
         self.detect_count = 0
 
 
@@ -26,8 +27,23 @@ class model:
 
 
         for detection in detections.T:
-            objectness_score = detection[4]
-            if objectness_score > 0.7:
+            objectness_score = detection[4] * 100
+            if objectness_score > 1:
+                print(f"Objectness: {float(objectness_score):.2f}%")
+            if objectness_score > 70:
+                x_center = detection[0]
+                y_center = detection[1]
+                width = detection[2]
+                height = detection[3]
+                
+                class_scores = detection[5:]
+                class_id = np.argmax(class_scores)
+                confidence = class_scores[class_id]
+
+                print("Non-hardhat detected with over 70%% confidence!")
+                print(f"Detected class ID: {class_id}, confidence: {confidence}")
+                print(f"Bounding box: [x_center: {x_center}, y_center: {y_center}, width: {width}, height: {height}]")
+                #time.sleep(0.4)
                 return False
         return True
 
@@ -94,6 +110,7 @@ while vid.isOpened():
         timestamp_sec = frame_count*sec_between_frame % 60
         timestamp_min = frame_count*sec_between_frame // 60
         if not custom_model.has_helmet(frame) and (frame_count*sec_between_frame) > prev_time:
+            "Extracting video clip"
             extract_subvideo_ffmpeg(timestamp_sec, timestamp_min, sys.argv[1], f"extract/sub_vid{count}.mp4")
             prev_time = frame_count*sec_between_frame + 10
             count += 1
