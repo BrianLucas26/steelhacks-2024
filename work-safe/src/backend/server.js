@@ -3,10 +3,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5010;
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://btl26:2lF930374Z7zzoL2@incidents.ivyx2.mongodb.net/', {
+mongoose.connect('mongodb+srv://jordanshopp123:obYSCgSMGDQ9zMa8@cluster0.kwlhw.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
