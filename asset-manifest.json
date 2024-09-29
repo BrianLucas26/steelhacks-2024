@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/steelhacks-2024/static/css/main.d2f407df.css",
+    "main.js": "/steelhacks-2024/static/js/main.088fa099.js",
+    "static/js/453.6b65dbfb.chunk.js": "/steelhacks-2024/static/js/453.6b65dbfb.chunk.js",
+    "index.html": "/steelhacks-2024/index.html",
+    "main.d2f407df.css.map": "/steelhacks-2024/static/css/main.d2f407df.css.map",
+    "main.088fa099.js.map": "/steelhacks-2024/static/js/main.088fa099.js.map",
+    "453.6b65dbfb.chunk.js.map": "/steelhacks-2024/static/js/453.6b65dbfb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d2f407df.css",
+    "static/js/main.088fa099.js"
+  ]
+}
