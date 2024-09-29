@@ -129,9 +129,14 @@ function App() {
       {/* Incident List */}
       <div className="incident-list">
         <h2>Incident List</h2>
-        {filteredIncidents.map((incident, index) => (
-          <div key={index} className="incident-item">
-            <div onClick={() => handleExpand(index)} className="incident-header">
+        {filteredIncidents
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map((incident, index) => (
+          <div
+            key={index}
+            className={`incident-item`}  // Add 'resolved' class if incident is resolved
+          >
+            <div onClick={() => handleExpand(index)} className={`incident-header ${incident.resolved ? 'resolved' : ''}`}>
               <span>{`${incident.date} ${incident.timestamp}`}</span>
             </div>
 

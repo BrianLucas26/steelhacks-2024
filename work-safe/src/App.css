@@ -173,9 +173,11 @@ body {
   margin-bottom: 10px;
 }
 
+
 .incident-header {
   padding: 10px;
   background-color: #eee;
+  background-color: rgb(246, 149, 149);
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -185,6 +187,17 @@ body {
 
 .incident-header:hover {
   background-color: #ddd;
+  background-color: rgb(210, 113, 113);
+}
+
+.incident-header.resolved {
+  background-color: #c1efcc; /* Light green for resolved incidents */
+  border-color: #c3e6cb;
+}
+
+.incident-header.resolved:hover {
+  background-color: #9ceaae;
+  border-color: #8bdf9e;
 }
 
 .incident-details {
