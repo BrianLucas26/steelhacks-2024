@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 5010;
 
 // Connect to MongoDB
@@ -81,7 +82,7 @@ app.get('/api/all-incidents', async (req, res) => {
 });
 
 // API to get the incidents that occurred this week
-app.get('/api/incidents', async (req, res) => {
+app.get('/api/incidents-week', async (req, res) => {
   try {
     // Get the current date and the start of the week (assuming the week starts on Sunday)
     const now = new Date();
@@ -119,6 +120,38 @@ app.get('/api/incident-count', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch incident count' });
   }
 });
+
+// API to update the resolved status of an incident by id
+app.put('/api/incidents/:id', async (req, res) => {
+  const { id } = req.params; // Get the id from the URL parameters
+  const { resolved } = req.body; // Get the new resolved status from the request body
+
+  try {
+    // Validate the incoming resolved status
+    if (typeof resolved !== 'boolean') {
+      return res.status(400).json({ error: 'Resolved status must be a boolean' });
+    }
+
+    // Update the incident in the database
+    const updatedIncident = await Incident.findByIdAndUpdate(
+      id,
+      { resolved },
+      { new: true, runValidators: true } // Return the updated document and run validators
+    );
+
+    // Check if the incident was found and updated
+    if (!updatedIncident) {
+      return res.status(404).json({ error: 'Incident not found' });
+    }
+
+    // Return the updated incident
+    res.json({ message: 'Incident updated successfully', incident: updatedIncident });
+  } catch (error) {
+    console.error('Error updating incident:', error);
+    res.status(500).json({ error: 'Failed to update incident' });
+  }
+});
+
 
 // Hardcoded JSON data
 const incidentsData = [

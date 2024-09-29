@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const incidentsResponse = await fetch('http://localhost:5000/api/incidents-test');
+        const incidentsResponse = await fetch('http://localhost:5010/api/all-incidents');
         const incidentsData = await incidentsResponse.json();
 
         console.log("Incidents List:", incidentsData);
@@ -37,6 +37,29 @@ function App() {
     setExpandedIncidentId(expandedIncidentId === id ? null : id);
   };
 
+  const markAsResolved = async (incidentId) => {
+    try {
+      const response = await fetch(`http://localhost:5010/api/incidents/${incidentId}`, {
+        method: 'PUT', // Assuming you're using PATCH to update
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ resolved: true }), // Set resolved to true
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to mark as resolved');
+      }
+  
+      // Optionally, you can re-fetch incidents to update the list
+      const updatedIncidentsResponse = await fetch('http://localhost:5010/api/all-incidents');
+      const updatedIncidentsData = await updatedIncidentsResponse.json();
+      setIncidents(updatedIncidentsData);
+    } catch (error) {
+      console.error('Error marking incident as resolved:', error);
+    }
+  };
+  
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -156,12 +179,14 @@ function App() {
                 ) : (
                   <video controls className="incident-video">
                     <source src={incident.videoURL} type="video/mp4" />
+                    {/* <source src={'/Vids/train/0_tr2.mp4'} type="video/mp4" /> */}
+                    {/* <source src={'path'} type="video/mp4" /> */}
                     Your browser does not support the video tag.
                   </video>
                 )}
                 <div className="incident-actions">
                   <button className="report-btn">File Report</button>
-                  <button className="resolve-btn">Mark as Resolved</button>
+                  <button className="resolve-btn" onClick={() => markAsResolved(incident._id)}>Mark as Resolved</button>
                 </div>
               </div>
             )}
